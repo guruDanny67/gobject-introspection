@@ -266,7 +266,10 @@ foreach gir : gir_files
   custom_target('generate-typelib-@0@'.format(gir).underscorify(),
     input: gir,
     output: '@BASENAME@.typelib',
-    command: [gircompiler, '-o', '@OUTPUT@', '@INPUT@'],
+    command: [gircompiler, '-o', '@OUTPUT@', '@INPUT@',
+              '--includedir', join_paths(meson.build_root(), 'gir'),
+              '--includedir', join_paths(meson.source_root(), 'gir'),
+    ],
     install: true,
     install_dir: typelibdir,
   )
