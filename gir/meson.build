@@ -47,6 +47,8 @@ scanner_command = [
   '--no-libtool',
   '--external-library',
   '--reparse-validate',
+  '--add-include-path', join_paths(meson.build_root(), 'gir'),
+  '--add-include-path', join_paths(meson.source_root(), 'gir'),
 ]
 
 # GLib
@@ -269,6 +271,7 @@ foreach gir : gir_files
     command: [gircompiler, '-o', '@OUTPUT@', '@INPUT@',
               '--includedir', join_paths(meson.build_root(), 'gir'),
               '--includedir', join_paths(meson.source_root(), 'gir'),
+#              '--verbose',
     ],
     install: true,
     install_dir: typelibdir,
